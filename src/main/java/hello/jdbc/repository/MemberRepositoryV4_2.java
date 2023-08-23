@@ -70,7 +70,7 @@ public class MemberRepositoryV4_2 implements MemberRepository {
                 throw new NoSuchElementException("member not found memberId=" + memberId);
             }
         } catch (SQLException e) {
-            throw exTranslator.translate("save", sql, e);
+            throw exTranslator.translate("findById", sql, e);
         } finally {
             close(con, pstmt, rs);
         }
@@ -92,7 +92,7 @@ public class MemberRepositoryV4_2 implements MemberRepository {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw exTranslator.translate("save", sql, e);
+            throw exTranslator.translate("update", sql, e);
         } finally {
             close(con, pstmt, null);
         }
@@ -114,7 +114,7 @@ public class MemberRepositoryV4_2 implements MemberRepository {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw exTranslator.translate("save", sql, e);
+            throw exTranslator.translate("delete", sql, e);
         } finally {
             close(con, pstmt, null);
         }
