@@ -23,15 +23,15 @@ public class MemberServiceV3_1 {
 
     public void accountTransfer(String fromId, String toId, int money) {
 
-        //트랜잭션 시작
+        //트랜잭션 시작 (트랜잭션 추상화)
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
             // 비지니스 로직
             bizLogic(fromId, toId, money);
-            transactionManager.commit(status); // 성공시 커밋
+            transactionManager.commit(status); // 성공시 커밋 (트랜잭션 추상화)
         } catch (Exception e) {
-            transactionManager.rollback(status); // 실패시 롤백
+            transactionManager.rollback(status); // 실패시 롤백 (트랜잭션 추상화)
             throw new IllegalStateException(e);
         }
     }
